@@ -1,4 +1,4 @@
-package Source.JavaUtils;
+package JavaUtils;
 
 import java.util.*;
 import java.lang.*;
