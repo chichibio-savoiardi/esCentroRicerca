@@ -17,6 +17,8 @@ public class Area {
         this.ricercatoriLocali = new ArrayList<>();
     }
 
+    // +++++ getter / setter +++++
+
     public Ricercatore getResponsabile() {
         return responsabile;
     }
@@ -39,5 +41,23 @@ public class Area {
 
     public void setRicercatoriLocali(List<Ricercatore> ricercatoriLocali) {
         this.ricercatoriLocali = ricercatoriLocali;
+    }
+
+    // ----- end getter / setter -----
+
+    public void creaTeam() {
+        //todo
+    }
+
+    public void assegnaProgetto(Progetto progetto, TeamRicerca teamRicerca) {
+        //todo
+    }
+
+    public String toString() {
+        return "Area { " +
+                "\nResponsabile = " + responsabile +
+                "\nTeam locali = " + teamLocali +
+                "\nRicercatori locali = " + ricercatoriLocali +
+                "\n}\n";
     }
 }

@@ -1,5 +1,6 @@
 package Source;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class TeamRicerca {
@@ -13,5 +14,13 @@ public class TeamRicerca {
         this.senior = senior;
         this.juniors = juniors;
         this.progettoCorrente = progettoCorrente;
+    }
+
+    public String toString() {
+        return "Team Ricerca { " +
+                "\nSenior = " + senior +
+                "\nJuniors = " + Arrays.toString(juniors) +
+                "\nProgetto corrente = " + progettoCorrente +
+                "\n}\n";
     }
 }
