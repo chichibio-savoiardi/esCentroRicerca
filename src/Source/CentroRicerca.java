@@ -12,4 +12,12 @@ public class CentroRicerca {
         this.listaAree = new Area[10];
         this.areaCorrente = 0;
     }
+
+    public int getAreaCorrente() {
+        return areaCorrente;
+    }
+
+    public void setAreaCorrente(int areaCorrente) {
+        this.areaCorrente = areaCorrente;
+    }
 }
