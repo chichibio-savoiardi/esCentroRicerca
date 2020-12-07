@@ -55,7 +55,8 @@ public class CentroRicerca {
     // ----- end getter / setter -----
 
     public void gestoreCentro() {
-        System.out.println("+++++\nArea corrente: " + listaAree[areaCorrente].toString());
+        System.out.println("+++++\nArea corrente: " + areaCorrente);
+        System.out.print("Responsabile area: " + listaAree[areaCorrente].getResponsabile());
         System.out.println("""
                 -----
                 Premi 1 per assegnare un progetto
@@ -84,11 +85,17 @@ public class CentroRicerca {
     }
 
     public void gestoreRicercatori() {
-        //todo
+        System.out.println(listaAree[areaCorrente].getRicercatoriLocali());
     }
 
     public void gestoreTeam() {
-        //todo
+        System.out.println(listaAree[areaCorrente].getTeamLocali());
+        int gestoreTeamSwitchVar = centroIn.nextInt();
+        switch (gestoreTeamSwitchVar) {
+            case 0 -> gestoreCentro();
+            //todo
+            default -> gestoreTeam();
+        }
     }
 
     public void creaProgetto() {

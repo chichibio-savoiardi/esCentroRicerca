@@ -88,8 +88,8 @@ public class Area {
     public String toString() {
         return "Area { " +
                 "\nResponsabile = " + responsabile +
-                "\nTeam locali = " + teamLocali +
-                "\nRicercatori locali = " + ricercatoriLocali +
+                "Team locali = " + teamLocali +
+                "\nRicercatori locali = \n" + ricercatoriLocali +
                 "\n}\n";
     }
 }
