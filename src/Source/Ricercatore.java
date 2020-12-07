@@ -15,9 +15,9 @@ public class Ricercatore {
 
     public String toString() {
         return "Ricercatore { " +
-                "\nNome e cognome=" + Arrays.toString(nomeCognome) +
-                "\nSenior? = " + senior +
-                "\nIn ricerca? = " + inRicerca +
-                "\n}\n";
+                "Nome e cognome=" + Arrays.toString(nomeCognome) +
+                ", Senior? = " + senior +
+                ", In ricerca? = " + inRicerca +
+                "}\n";
     }
 }

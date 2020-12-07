@@ -24,4 +24,14 @@ public class BasicUtils {
         Random rand = new Random();
         return rand.nextInt((max - min) + 1) + min;
     }
+
+    public boolean randBool() {
+        Random rand = new Random();
+        return rand.nextBoolean();
+    }
+
+    public double randDouble(double min, double max) {
+        Random rand = new Random();
+        return min + (max - min) * rand.nextDouble();
+    }
 }

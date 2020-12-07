@@ -9,8 +9,6 @@ public class Main {
     static CentroRicerca centroRicerca = new CentroRicerca();
 
     public static void main(String[] args) {
-        System.out.println(centroRicerca.toString());
-        System.out.println("------------------");
-        centroRicerca.printAree();
+        centroRicerca.gestoreCentro();
     }
 }
