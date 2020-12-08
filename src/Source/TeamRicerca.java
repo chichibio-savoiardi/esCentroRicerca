@@ -44,8 +44,18 @@ public class TeamRicerca {
     public String toString() {
         return "Team Ricerca { " +
                 "\nSenior = " + senior +
-                "\nJuniors = " + Arrays.toString(juniors) +
+                "\nJuniors = " + juniors +
                 "\nProgetto corrente = " + progettoCorrente +
                 " }";
     }
+
+    /*private String toString(Ricercatore[] arr) {
+        StringBuilder result = new StringBuilder();
+        result.append("[");
+        for (Ricercatore a : arr) {
+            result.append(a);
+        }
+        result.append("]");
+        return result.toString();
+    }*/
 }

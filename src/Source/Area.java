@@ -141,6 +141,7 @@ public class Area {
             }
         } while (temp.equals("s") || temp.equals("S"));
         try {
+            ricercatoriLocali.get(tempSenior).setInTeam(true);
             teamLocali.add(new TeamRicerca(ricercatoriLocali.get(tempSenior), tempList.toArray(new Ricercatore[0])));
         } catch (Exception e) {
             System.out.println("Error\nValore invalido in creaTeam() " + getClass());
