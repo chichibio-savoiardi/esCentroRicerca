@@ -11,7 +11,6 @@ public class Ricercatore {
     public Ricercatore(String[] nomeCognome, boolean senior) {
         this.nomeCognome = nomeCognome;
         this.senior = senior;
-        this.inRicerca = false;
         this.inTeam = false;
     }
 
@@ -25,14 +24,6 @@ public class Ricercatore {
 
     public boolean isSenior() {
         return senior;
-    }
-
-    public boolean isInRicerca() {
-        return inRicerca;
-    }
-
-    public void setInRicerca(boolean inRicerca) {
-        this.inRicerca = inRicerca;
     }
 
     public void setSenior(boolean senior) {

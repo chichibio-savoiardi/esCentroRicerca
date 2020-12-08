@@ -128,36 +128,44 @@ public class CentroRicerca {
         gestoreCentro();
     }
 
-    public void creaProgetto() {//todo
+    public void creaProgetto() {
+        centroIn = new Scanner(System.in);
         if (listaAree[areaCorrente].getTeamLocali().isEmpty()) {
             System.out.println("Non ci sono team nell'area selezionata");
             return;
         }
         System.out.println("Inserisci il nome del progetto");
         String tempNome = centroIn.nextLine();
-        System.out.println("A quale team lo vuoi assegnare");
         System.out.println(listaAree[areaCorrente].getTeamLocali());
+        System.out.println("A quale team lo vuoi assegnare");
+        int tempTeam = centroIn.nextInt();
         try {
-            progetti.add(new Progetto(tempNome, listaAree[areaCorrente].getTeamLocali().get(centroIn.nextInt())));
+            progetti.add(new Progetto(tempNome, listaAree[areaCorrente].getTeamLocali().get(tempTeam)));
         } catch (Exception e) {
             System.out.println("Error\nValore invalido in creaProgetto() " + getClass());
             return;
         }
+        listaAree[areaCorrente].getTeamLocali().get(tempTeam).setProgettoCorrente(progetti.get(progetti.size() - 1));//setta il progetto del team prescelto all'ultimo progetto creato
+        System.out.println(progetti.get(progetti.size() - 1) + " Assegnato a: " + progetti.get(progetti.size() - 1).assegnatoA);//stampa il progetto e a chi è stato assegnato
     }
 
     public void delProgetto() {
+        centroIn = new Scanner(System.in);
         if (progetti.isEmpty()) {
             System.out.println("Non ci sono progetti in corso");
             return;
         }
-        System.out.println(progetti.toString());
+        System.out.println(progetti);
         System.out.println("Scegli l'indice del progetto da eliminare");
+        int progettoDaEliminare = centroIn.nextInt();
         try {
-            progetti.remove(centroIn.nextInt());
+            progetti.get(progettoDaEliminare).assegnatoA.setProgettoCorrente(null);
+            progetti.remove(progettoDaEliminare);
         } catch (Exception e) {
             System.out.println("Error\nValore invalido in delProgetto() " + getClass());
             return;
         }
+        System.out.println("Progetto eliminato:\n" + progetti);
     }
 
     public String toString() {
