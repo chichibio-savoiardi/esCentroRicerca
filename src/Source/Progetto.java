@@ -1,5 +1,8 @@
 package Source;
 
+import java.lang.String;
+import java.util.Arrays;
+
 public class Progetto {
     protected TeamRicerca assegnatoA;
     protected String nome;

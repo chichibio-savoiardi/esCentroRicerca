@@ -1,3 +1,9 @@
+/* +++++
+ * Autore: Iuri Antico
+ * -----
+ * non riesco a risolvere uno StackOverflowError :(
+ * +++++
+ */
 package Source;
 
 import java.util.*;

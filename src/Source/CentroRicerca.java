@@ -156,8 +156,8 @@ public class CentroRicerca {
             System.out.println("Error\nValore invalido in creaProgetto() " + getClass());
             return;
         }
-        listaAree[areaCorrente].getTeamLocali().get(tempTeam).setProgettoCorrente(progetti.get(progetti.size() - 1));//setta il progetto del team prescelto all'ultimo progetto creato
-        System.out.println(progetti.get(progetti.size() - 1) + " Assegnato a: " + progetti.get(progetti.size() - 1).assegnatoA);//stampa il progetto e a chi è stato assegnato
+        listaAree[areaCorrente].getTeamLocali().get(tempTeam).setProgettoCorrente(progetti.get(progetti.size() - 1));//assegna l'ultimo progetto creato al team scelto
+        System.out.println("Progetto creato: " + progetti.get(progetti.size() - 1));//stampa il progetto
     }
 
     public void delProgetto() {

@@ -1,15 +1,13 @@
 package Source;
 
-import JavaUtils.ArrayUtils;
-
 import java.util.Arrays;
+import java.lang.String;
 
 public class Ricercatore {
     protected String[] nomeCognome = new String[2];
     protected boolean senior;
     protected boolean inRicerca;
     protected boolean inTeam;
-    private static ArrayUtils arrayUtils = new ArrayUtils();
 
     public Ricercatore(String[] nomeCognome, boolean senior) {
         this.nomeCognome = nomeCognome;

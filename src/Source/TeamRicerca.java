@@ -1,10 +1,7 @@
 package Source;
 
-import java.io.ObjectOutput;
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Scanner;
-import java.lang.*;
+import java.util.*;
+import java.lang.String;
 
 public class TeamRicerca {
     private Ricercatore senior;
@@ -44,18 +41,16 @@ public class TeamRicerca {
     public String toString() {
         return "Team Ricerca { " +
                 "\nSenior = " + senior +
-                "\nJuniors = " + juniors +
-                "\nProgetto corrente = " + progettoCorrente +
+                "\nJuniors = " + Arrays.toString(juniors) +
+                "\nProgetto corrente = " + toStringAssistant() +
                 " }";
     }
 
-    /*private String toString(Ricercatore[] arr) {
-        StringBuilder result = new StringBuilder();
-        result.append("[");
-        for (Ricercatore a : arr) {
-            result.append(a);
+    private String toStringAssistant() {
+        if (progettoCorrente == null) {
+            return "empty";
+        } else {
+            return progettoCorrente.nome;
         }
-        result.append("]");
-        return result.toString();
-    }*/
+    }
 }
