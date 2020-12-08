@@ -6,11 +6,13 @@ public class Ricercatore {
     protected String[] nomeCognome = new String[2];
     protected boolean senior;
     protected boolean inRicerca;
+    protected boolean inTeam;
 
     public Ricercatore(String[] nomeCognome, boolean senior) {
         this.nomeCognome = nomeCognome;
         this.senior = senior;
         this.inRicerca = false;
+        this.inTeam = false;
     }
 
     public String[] getNomeCognome() {
@@ -35,6 +37,14 @@ public class Ricercatore {
 
     public void setSenior(boolean senior) {
         this.senior = senior;
+    }
+
+    public boolean isInTeam() {
+        return inTeam;
+    }
+
+    public void setInTeam(boolean inTeam) {
+        this.inTeam = inTeam;
     }
 
     public String toString() {

@@ -106,15 +106,33 @@ public class Area {
 
     public void creaTeam() {
         for (int i = 0; i < ricercatoriLocali.size(); i++) {
-            if (ricercatoriLocali.get(i).isSenior()) {
-                System.out.print(ricercatoriLocali.get(i).toString());
-            }
+            if (ricercatoriLocali.get(i).isSenior()) System.out.print(i + ": " + ricercatoriLocali.get(i).toString());
         }
-        System.out.println("Scegli un ricercatore senior come capo del team");
+        System.out.println("Scegli l'indice di un ricercatore senior come capo del team");
+        int tempSenior = areaIn.nextInt();
+        System.out.println();
+        for (int i = 0; i < ricercatoriLocali.size(); i++) {
+            if (!ricercatoriLocali.get(i).isInTeam()) System.out.print(i + ": " + ricercatoriLocali.get(i).toString());
+        }
+        String temp = "n";
+        int indexRicercatore = 0;
+        List<Ricercatore> tempList = new ArrayList<>();
+        do {
+            System.out.println("Inserisci l'indice di un ricercatore per il team");
+            indexRicercatore = areaIn.nextInt();
+            if (!tempList.get(indexRicercatore).inTeam) {
+                tempList.add(ricercatoriLocali.get(indexRicercatore));
+                System.out.println("Vuoi inserire un'altro ricercatore? S/N?");
+                temp = areaIn.nextLine();
+            } else {
+                //todo
+            }
+        } while (temp.equals("s") || temp.equals("S"));
+        System.out.println(ricercatoriLocali);
         try {
-            //teamLocali.add(new TeamRicerca());
+            teamLocali.add(new TeamRicerca(ricercatoriLocali.get(tempSenior), (Ricercatore[]) tempList.toArray()));
         } catch (Exception e) {
-            System.out.println("Error\nValore invalido in creaRicercatore() " + getClass());
+            System.out.println("Error\nValore invalido in creaTeam() " + getClass());
             return;
         }
     }
