@@ -9,6 +9,7 @@ public class Main {
     static CentroRicerca centroRicerca = new CentroRicerca();
 
     public static void main(String[] args) {
-        centroRicerca.gestoreCentro();
+        centroRicerca.getListaAree()[0].creaTeam();
+        //centroRicerca.gestoreCentro();
     }
 }

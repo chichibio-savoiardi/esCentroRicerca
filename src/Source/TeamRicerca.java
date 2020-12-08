@@ -22,6 +22,22 @@ public class TeamRicerca {
         this.progettoCorrente = progettoCorrente;
     }
 
+    public Ricercatore getSenior() {
+        return senior;
+    }
+
+    public void setSenior(Ricercatore senior) {
+        this.senior = senior;
+    }
+
+    public Ricercatore[] getJuniors() {
+        return juniors;
+    }
+
+    public void setJuniors(Ricercatore[] juniors) {
+        this.juniors = juniors;
+    }
+
     public String toString() {
         return "Team Ricerca { " +
                 "\nSenior = " + senior +

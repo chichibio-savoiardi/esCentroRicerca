@@ -13,6 +13,30 @@ public class Ricercatore {
         this.inRicerca = false;
     }
 
+    public String[] getNomeCognome() {
+        return nomeCognome;
+    }
+
+    public void setNomeCognome(String[] nomeCognome) {
+        this.nomeCognome = nomeCognome;
+    }
+
+    public boolean isSenior() {
+        return senior;
+    }
+
+    public boolean isInRicerca() {
+        return inRicerca;
+    }
+
+    public void setInRicerca(boolean inRicerca) {
+        this.inRicerca = inRicerca;
+    }
+
+    public void setSenior(boolean senior) {
+        this.senior = senior;
+    }
+
     public String toString() {
         return "Ricercatore { " +
                 "Nome e cognome = " + Arrays.toString(nomeCognome) +

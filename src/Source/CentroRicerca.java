@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class CentroRicerca {
     private Scanner centroIn;
-    protected Area[] listaAree;
+    private Area[] listaAree;
     private int areaCorrente;
     private List<Progetto> progetti;
 
@@ -52,6 +52,14 @@ public class CentroRicerca {
         this.areaCorrente = areaCorrente;
     }
 
+    public Area[] getListaAree() {
+        return listaAree;
+    }
+
+    public void setListaAree(Area[] listaAree) {
+        this.listaAree = listaAree;
+    }
+
     // ----- end getter / setter -----
 
     public void gestoreCentro() {
@@ -86,16 +94,38 @@ public class CentroRicerca {
 
     public void gestoreRicercatori() {
         System.out.println(listaAree[areaCorrente].getRicercatoriLocali());
+        System.out.println("""
+                -----
+                Premi 1 per creare un ricercatore
+                Premi 2 per eliminare un ricercatore
+                premi 0 per tornare indietro
+                +++++""");
+        int gestoreRicercatoriSwitchVar = centroIn.nextInt();
+        switch (gestoreRicercatoriSwitchVar) {
+            case 0 -> gestoreCentro();
+            case 1 -> listaAree[areaCorrente].creaRicercatore();
+            case 2 -> listaAree[areaCorrente].delRicercatore();
+            default -> gestoreTeam();
+        }
+        gestoreCentro();
     }
 
     public void gestoreTeam() {
         System.out.println(listaAree[areaCorrente].getTeamLocali());
+        System.out.println("""
+                -----
+                Premi 1 per creare un team
+                Premi 2 per eliminare un team
+                premi 0 per tornare indietro
+                +++++""");
         int gestoreTeamSwitchVar = centroIn.nextInt();
         switch (gestoreTeamSwitchVar) {
             case 0 -> gestoreCentro();
-            //todo
+            case 1 -> listaAree[areaCorrente].creaTeam();
+            case 2 -> listaAree[areaCorrente].delTeam();
             default -> gestoreTeam();
         }
+        gestoreCentro();
     }
 
     public void creaProgetto() {
@@ -110,19 +140,23 @@ public class CentroRicerca {
         try {
             progetti.add(new Progetto(tempNome, listaAree[areaCorrente].getTeamLocali().get(centroIn.nextInt())));
         } catch (Exception e) {
-            System.out.println("Error\nValore invalido");
-            gestoreCentro();
+            System.out.println("Error\nValore invalido in creaProgetto() " + getClass());
+            return;
         }
     }
 
     public void delProgetto() {
+        if (progetti.isEmpty()) {
+            System.out.println("Non ci sono progetti in corso");
+            return;
+        }
         System.out.println(progetti.toString());
-        System.out.println("Scegli il progetto da eliminare");
+        System.out.println("Scegli l'indice del progetto da eliminare");
         try {
             progetti.remove(centroIn.nextInt());
         } catch (Exception e) {
-            System.out.println("Error\nValore invalido");
-            gestoreCentro();
+            System.out.println("Error\nValore invalido in delProgetto() " + getClass());
+            return;
         }
     }
 

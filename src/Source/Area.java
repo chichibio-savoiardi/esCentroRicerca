@@ -70,15 +70,53 @@ public class Area {
     }
 
     public void creaRicercatore() {
-        //todo
+        String[] tempNomeCognome = new String[2];
+        System.out.println("Inserisci il nome del ricercatore");
+        tempNomeCognome[0] = areaIn.nextLine();
+        System.out.println("Inserisci il cognome del ricercatore");
+        tempNomeCognome[1] = areaIn.nextLine();
+        System.out.println("E' un ricercatore senior? S/N");
+        String temp = areaIn.nextLine();
+        boolean tempSenior = false;
+        if (temp.equals("s") || temp.equals("S")) {
+            tempSenior = true;
+        }
+        try {
+            ricercatoriLocali.add(new Ricercatore(tempNomeCognome, tempSenior));
+        } catch (Exception e) {
+            System.out.println("Error\nValore invalido in creaRicercatore() " + getClass());
+            return;
+        }
     }
 
     public void delRicercatore() {
-        //todo
+        if (ricercatoriLocali.isEmpty()) {
+            System.out.println("Non ci sono ricercatori nell'area");
+            return;
+        }
+        System.out.println(ricercatoriLocali.toString());
+        System.out.println("Scegli l'indice del ricercatore da eliminare");
+        try {
+            ricercatoriLocali.remove(areaIn.nextInt());
+        } catch (Exception e) {
+            System.out.println("Error\nValore invalido in delRicercatore() " + getClass());
+            return;
+        }
     }
 
     public void creaTeam() {
-        //todo
+        for (int i = 0; i < ricercatoriLocali.size(); i++) {
+            if (ricercatoriLocali.get(i).isSenior()) {
+                System.out.print(ricercatoriLocali.get(i).toString());
+            }
+        }
+        System.out.println("Scegli un ricercatore senior come capo del team");
+        try {
+            //teamLocali.add(new TeamRicerca());
+        } catch (Exception e) {
+            System.out.println("Error\nValore invalido in creaRicercatore() " + getClass());
+            return;
+        }
     }
 
     public void delTeam() {
