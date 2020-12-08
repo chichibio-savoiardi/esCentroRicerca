@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-12-08T14:33:29.949Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36" etag="nL3JGr6HqzluTqVyGkDP" version="13.11.0" type="github">
+<mxfile host="app.diagrams.net" modified="2020-12-08T18:45:56.202Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36" etag="5eaIc9iA8byxpCQqIt1a" version="13.11.0" type="github">
   <diagram id="NEfvA0Faoo17mAP8dPTE" name="Page-1">
     <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
       <root>
@@ -78,7 +78,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="LHQRXKXzAWlHmnGXCeeM-5" value="Area" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;shadow=0;glass=0;" parent="1" vertex="1">
-          <mxGeometry x="261.26" y="370" width="268.75" height="320" as="geometry" />
+          <mxGeometry x="261.26" y="370" width="268.75" height="346" as="geometry" />
         </mxCell>
         <mxCell id="rYpqTabMFKJ0YKNoZ5C4-1" value="- areaIn: Scanner" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="LHQRXKXzAWlHmnGXCeeM-5" vertex="1">
           <mxGeometry y="26" width="268.75" height="26" as="geometry" />
@@ -113,8 +113,11 @@
         <mxCell id="ZDG7m28-BE6_EL69ge-v-4" value="+ delRicercatore(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="LHQRXKXzAWlHmnGXCeeM-5" vertex="1">
           <mxGeometry y="268" width="268.75" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="rYpqTabMFKJ0YKNoZ5C4-24" value="+ toString(): String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="LHQRXKXzAWlHmnGXCeeM-5" vertex="1">
+        <mxCell id="saB5h2-a04k6oG-uYBlL-9" value="+ toString(): String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="LHQRXKXzAWlHmnGXCeeM-5">
           <mxGeometry y="294" width="268.75" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="rYpqTabMFKJ0YKNoZ5C4-24" value="+ toStringAssistant(): String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="LHQRXKXzAWlHmnGXCeeM-5" vertex="1">
+          <mxGeometry y="320" width="268.75" height="26" as="geometry" />
         </mxCell>
         <mxCell id="rYpqTabMFKJ0YKNoZ5C4-6" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" parent="1" source="rYpqTabMFKJ0YKNoZ5C4-2" target="LHQRXKXzAWlHmnGXCeeM-5" edge="1">
           <mxGeometry relative="1" as="geometry" />
