@@ -10,9 +10,9 @@ public class Progetto {
     }
 
     public String toString() {
-        return "Progetto{" +
-                "assegnato A = " + assegnatoA +
-                ", nome = '" + nome + '\'' +
-                '}';
+        return "Progetto { " +
+                "nome = '" + nome +
+                ", assegnato A = " + assegnatoA +
+                " }";
     }
 }

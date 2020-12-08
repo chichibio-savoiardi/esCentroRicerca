@@ -128,7 +128,7 @@ public class CentroRicerca {
         gestoreCentro();
     }
 
-    public void creaProgetto() {
+    public void creaProgetto() {//todo
         if (listaAree[areaCorrente].getTeamLocali().isEmpty()) {
             System.out.println("Non ci sono team nell'area selezionata");
             return;

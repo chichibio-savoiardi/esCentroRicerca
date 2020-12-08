@@ -52,6 +52,7 @@ public class Ricercatore {
                 "Nome e cognome = " + Arrays.toString(nomeCognome) +
                 ", Senior? = " + senior +
                 ", In ricerca? = " + inRicerca +
-                "}\n";
+                ", In team? = " + inTeam +
+                " }\n";
     }
 }

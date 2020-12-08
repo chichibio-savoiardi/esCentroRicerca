@@ -70,6 +70,7 @@ public class Area {
     }
 
     public void creaRicercatore() {
+        areaIn = new Scanner(System.in);
         String[] tempNomeCognome = new String[2];
         System.out.println("Inserisci il nome del ricercatore");
         tempNomeCognome[0] = areaIn.nextLine();
@@ -87,9 +88,11 @@ public class Area {
             System.out.println("Error\nValore invalido in creaRicercatore() " + getClass());
             return;
         }
+        System.out.println("Ricercatore creato:\n" + ricercatoriLocali.get(ricercatoriLocali.size() - 1));
     }
 
     public void delRicercatore() {
+        areaIn = new Scanner(System.in);
         if (ricercatoriLocali.isEmpty()) {
             System.out.println("Non ci sono ricercatori nell'area");
             return;
@@ -102,14 +105,19 @@ public class Area {
             System.out.println("Error\nValore invalido in delRicercatore() " + getClass());
             return;
         }
+        System.out.println("Ricercatore eliminato:\n" + ricercatoriLocali);
     }
 
     public void creaTeam() {
+        areaIn = new Scanner(System.in);
         for (int i = 0; i < ricercatoriLocali.size(); i++) {
             if (ricercatoriLocali.get(i).isSenior()) System.out.print(i + ": " + ricercatoriLocali.get(i).toString());
         }
-        System.out.println("Scegli l'indice di un ricercatore senior come capo del team");
-        int tempSenior = areaIn.nextInt();
+        int tempSenior;
+        do {
+            System.out.println("Scegli l'indice di un ricercatore senior come capo del team");
+            tempSenior = areaIn.nextInt();
+        } while (!ricercatoriLocali.get(tempSenior).isSenior());
         System.out.println();
         for (int i = 0; i < ricercatoriLocali.size(); i++) {
             if (!ricercatoriLocali.get(i).isInTeam()) System.out.print(i + ": " + ricercatoriLocali.get(i).toString());
@@ -118,27 +126,49 @@ public class Area {
         int indexRicercatore = 0;
         List<Ricercatore> tempList = new ArrayList<>();
         do {
+            areaIn = new Scanner(System.in);
             System.out.println("Inserisci l'indice di un ricercatore per il team");
             indexRicercatore = areaIn.nextInt();
-            if (!tempList.get(indexRicercatore).inTeam) {
+            if (!ricercatoriLocali.get(indexRicercatore).inTeam) {
+                ricercatoriLocali.get(indexRicercatore).setInTeam(true);
                 tempList.add(ricercatoriLocali.get(indexRicercatore));
                 System.out.println("Vuoi inserire un'altro ricercatore? S/N?");
+                areaIn = new Scanner(System.in);
                 temp = areaIn.nextLine();
             } else {
-                //todo
+                System.out.println("Il ricercatore scelto è gia in un team");
+                temp = "s";
             }
         } while (temp.equals("s") || temp.equals("S"));
-        System.out.println(ricercatoriLocali);
         try {
-            teamLocali.add(new TeamRicerca(ricercatoriLocali.get(tempSenior), (Ricercatore[]) tempList.toArray()));
+            teamLocali.add(new TeamRicerca(ricercatoriLocali.get(tempSenior), tempList.toArray(new Ricercatore[0])));
         } catch (Exception e) {
             System.out.println("Error\nValore invalido in creaTeam() " + getClass());
             return;
         }
+        System.out.println("Team creato:\n" + teamLocali.get(teamLocali.size() - 1));
     }
 
     public void delTeam() {
-        //todo
+        areaIn = new Scanner(System.in);
+        if (teamLocali.isEmpty()) {
+            System.out.println("Non ci sono team nell'area");
+            return;
+        }
+        System.out.println(teamLocali.toString());
+        System.out.println("Scegli l'indice del team da eliminare");
+        int teamDaEliminare = areaIn.nextInt();
+        if (teamLocali.get(teamDaEliminare).getProgettoCorrente() != null){
+            System.out.println("Il team sta ricercando " + teamLocali.get(teamDaEliminare).getProgettoCorrente() + ", togli il progetto dal team prima di eliminarlo");
+            return;
+        }
+        try {
+            ricercatoriLocali.remove(teamDaEliminare);
+        } catch (Exception e) {
+            System.out.println("Error\nValore invalido in delTeam() " + getClass());
+            return;
+        }
+        System.out.println("Team eliminato:\n" + teamLocali);
     }
 
     public String toString() {
