@@ -1,5 +1,7 @@
 package Source;
 
+import JavaUtils.ArrayUtils;
+
 import java.util.Arrays;
 
 public class Ricercatore {
@@ -7,6 +9,7 @@ public class Ricercatore {
     protected boolean senior;
     protected boolean inRicerca;
     protected boolean inTeam;
+    private static ArrayUtils arrayUtils = new ArrayUtils();
 
     public Ricercatore(String[] nomeCognome, boolean senior) {
         this.nomeCognome = nomeCognome;
@@ -40,10 +43,10 @@ public class Ricercatore {
 
     public String toString() {
         return "Ricercatore { " +
-                "Nome e cognome = " + Arrays.toString(nomeCognome) +
-                ", Senior? = " + senior +
+                "Nome e cognome = [" + nomeCognome[0] + ", " + nomeCognome[1] +
+                "], Senior? = " + senior +
                 ", In ricerca? = " + inRicerca +
                 ", In team? = " + inTeam +
-                " }\n";
+                " }";
     }
 }

@@ -15,11 +15,30 @@ public class Area {
     private BasicUtils BasicUtils = new BasicUtils();
 
     public Area(Ricercatore responsabile) {
-        areaIn = new Scanner(System.in);
+        this.areaIn = new Scanner(System.in);
         this.responsabile = responsabile;
         this.teamLocali = new ArrayList<>();
         this.ricercatoriLocali = new ArrayList<>();
         initListaRicercatori();
+    }
+
+    private void initListaRicercatori() {
+        Ricercatore[] tempArray = new Ricercatore[10];
+        String[][] names = new String[10][2];
+        names[0] = new String[]{"Mary", "Smith"};
+        names[1] = new String[]{"Oliver", "Jones"};
+        names[2] = new String[]{"Elizabeth", "Williams"};
+        names[3] = new String[]{"William", "Taylor"};
+        names[4] = new String[]{"Sarah", "Brown"};
+        names[5] = new String[]{"Giuseppe", "Rossi"};
+        names[6] = new String[]{"Maria", "Russo"};
+        names[7] = new String[]{"Antonio", "Ferrari"};
+        names[8] = new String[]{"Anna", "Esposito"};
+        names[9] = new String[]{"Giovanni", "Bianchi"};
+        for (int i = 0; i < tempArray.length; i++) {
+            tempArray[i] = new Ricercatore(names[i], BasicUtils.randBool());
+        }
+        ricercatoriLocali.addAll(Arrays.asList(tempArray));
     }
 
     // +++++ getter / setter +++++
@@ -50,25 +69,6 @@ public class Area {
 
     // ----- end getter / setter -----
 
-    private void initListaRicercatori() {
-        Ricercatore[] tempArray = new Ricercatore[10];
-        String[][] names = new String[10][2];
-        names[0] = new String[]{"Mary", "Smith"};
-        names[1] = new String[]{"Oliver", "Jones"};
-        names[2] = new String[]{"Elizabeth", "Williams"};
-        names[3] = new String[]{"William", "Taylor"};
-        names[4] = new String[]{"Sarah", "Brown"};
-        names[5] = new String[]{"Giuseppe", "Rossi"};
-        names[6] = new String[]{"Maria", "Russo"};
-        names[7] = new String[]{"Antonio", "Ferrari"};
-        names[8] = new String[]{"Anna", "Esposito"};
-        names[9] = new String[]{"Giovanni", "Bianchi"};
-        for (int i = 0; i < tempArray.length; i++) {
-            tempArray[i] = new Ricercatore(names[i], BasicUtils.randBool());
-        }
-        ricercatoriLocali.addAll(Arrays.asList(tempArray));
-    }
-
     public void creaRicercatore() {
         areaIn = new Scanner(System.in);
         String[] tempNomeCognome = new String[2];
@@ -79,9 +79,7 @@ public class Area {
         System.out.println("E' un ricercatore senior? S/N");
         String temp = areaIn.nextLine();
         boolean tempSenior = false;
-        if (temp.equals("s") || temp.equals("S")) {
-            tempSenior = true;
-        }
+        if (temp.equals("s") || temp.equals("S")) tempSenior = true;
         try {
             ricercatoriLocali.add(new Ricercatore(tempNomeCognome, tempSenior));
         } catch (Exception e) {
@@ -97,7 +95,9 @@ public class Area {
             System.out.println("Non ci sono ricercatori nell'area");
             return;
         }
-        System.out.println(ricercatoriLocali.toString());
+        for (int i = 0; i < ricercatoriLocali.size(); i++) {
+            System.out.println(i + ": " + ricercatoriLocali.get(i));
+        }
         System.out.println("Scegli l'indice del ricercatore da eliminare");
         try {
             ricercatoriLocali.remove(areaIn.nextInt());
@@ -111,7 +111,7 @@ public class Area {
     public void creaTeam() {
         areaIn = new Scanner(System.in);
         for (int i = 0; i < ricercatoriLocali.size(); i++) {
-            if (ricercatoriLocali.get(i).isSenior()) System.out.print(i + ": " + ricercatoriLocali.get(i).toString());
+            if (ricercatoriLocali.get(i).isSenior()) System.out.println(i + ": " + ricercatoriLocali.get(i).toString());
         }
         int tempSenior;
         do {
@@ -120,10 +120,10 @@ public class Area {
         } while (!ricercatoriLocali.get(tempSenior).isSenior());
         System.out.println();
         for (int i = 0; i < ricercatoriLocali.size(); i++) {
-            if (!ricercatoriLocali.get(i).isInTeam()) System.out.print(i + ": " + ricercatoriLocali.get(i).toString());
+            if (!ricercatoriLocali.get(i).isInTeam()) System.out.println(i + ": " + ricercatoriLocali.get(i).toString());
         }
-        String temp = "n";
-        int indexRicercatore = 0;
+        String temp;
+        int indexRicercatore;
         List<Ricercatore> tempList = new ArrayList<>();
         do {
             areaIn = new Scanner(System.in);
@@ -155,7 +155,9 @@ public class Area {
             System.out.println("Non ci sono team nell'area");
             return;
         }
-        System.out.println(teamLocali.toString());
+        for (int i = 0; i < teamLocali.size(); i++) {
+            System.out.println(i + ": " + teamLocali.get(i));
+        }
         System.out.println("Scegli l'indice del team da eliminare");
         int teamDaEliminare = areaIn.nextInt();
         if (teamLocali.get(teamDaEliminare).getProgettoCorrente() != null){

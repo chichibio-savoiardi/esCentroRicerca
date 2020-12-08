@@ -1,7 +1,10 @@
 package Source;
 
+import java.io.ObjectOutput;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
+import java.lang.*;
 
 public class TeamRicerca {
     private Ricercatore senior;
@@ -43,6 +46,6 @@ public class TeamRicerca {
                 "\nSenior = " + senior +
                 "\nJuniors = " + Arrays.toString(juniors) +
                 "\nProgetto corrente = " + progettoCorrente +
-                "\n}\n";
+                " }";
     }
 }

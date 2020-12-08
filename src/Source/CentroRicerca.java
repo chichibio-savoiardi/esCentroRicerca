@@ -64,7 +64,7 @@ public class CentroRicerca {
 
     public void gestoreCentro() {
         System.out.println("+++++\nArea corrente: " + areaCorrente);
-        System.out.print("Responsabile area: " + listaAree[areaCorrente].getResponsabile());
+        System.out.println("Responsabile area: " + listaAree[areaCorrente].getResponsabile());
         System.out.println("""
                 -----
                 Premi 1 per assegnare un progetto
@@ -72,6 +72,7 @@ public class CentroRicerca {
                 premi 3 per vedere la lista dei progetti
                 premi 4 per vedere la lista dei ricercatori e gestirli
                 premi 5 per vedere la lista dei team e gestirli
+                premi 8 per cambiare il responsabile area
                 premi 9 per cambiare area
                 Premi 0 per uscire
                 +++++""");
@@ -83,6 +84,7 @@ public class CentroRicerca {
             case 3 -> System.out.println(progetti.toString());
             case 4 -> gestoreRicercatori();
             case 5 -> gestoreTeam();
+            case 8 -> cambiaResponsabile();
             case 9 -> {
                 System.out.println("Inserisci il numero area da 0 a 9");
                 areaCorrente = centroIn.nextInt();
@@ -93,7 +95,10 @@ public class CentroRicerca {
     }
 
     public void gestoreRicercatori() {
-        System.out.println(listaAree[areaCorrente].getRicercatoriLocali());
+        centroIn = new Scanner(System.in);
+        for (int i = 0; i < listaAree[areaCorrente].getRicercatoriLocali().size(); i++) {
+            System.out.println(i + ": " + listaAree[areaCorrente].getRicercatoriLocali().get(i));
+        }
         System.out.println("""
                 -----
                 Premi 1 per creare un ricercatore
@@ -111,7 +116,10 @@ public class CentroRicerca {
     }
 
     public void gestoreTeam() {
-        System.out.println(listaAree[areaCorrente].getTeamLocali());
+        centroIn = new Scanner(System.in);
+        for (int i = 0; i < listaAree[areaCorrente].getTeamLocali().size(); i++) {
+            System.out.println(i + ": " + listaAree[areaCorrente].getTeamLocali().get(i));
+        }
         System.out.println("""
                 -----
                 Premi 1 per creare un team
@@ -136,8 +144,11 @@ public class CentroRicerca {
         }
         System.out.println("Inserisci il nome del progetto");
         String tempNome = centroIn.nextLine();
-        System.out.println(listaAree[areaCorrente].getTeamLocali());
+        for (int i = 0; i < listaAree[areaCorrente].getTeamLocali().size(); i++) {
+            System.out.println(i + ": " + listaAree[areaCorrente].getTeamLocali().get(i));
+        }
         System.out.println("A quale team lo vuoi assegnare");
+        centroIn = new Scanner(System.in);
         int tempTeam = centroIn.nextInt();
         try {
             progetti.add(new Progetto(tempNome, listaAree[areaCorrente].getTeamLocali().get(tempTeam)));
@@ -155,8 +166,11 @@ public class CentroRicerca {
             System.out.println("Non ci sono progetti in corso");
             return;
         }
-        System.out.println(progetti);
+        for (int i = 0; i < progetti.size(); i++) {
+            System.out.println(i + ": " + progetti.get(i));
+        }
         System.out.println("Scegli l'indice del progetto da eliminare");
+        centroIn = new Scanner(System.in);
         int progettoDaEliminare = centroIn.nextInt();
         try {
             progetti.get(progettoDaEliminare).assegnatoA.setProgettoCorrente(null);
@@ -166,6 +180,21 @@ public class CentroRicerca {
             return;
         }
         System.out.println("Progetto eliminato:\n" + progetti);
+    }
+
+    public void cambiaResponsabile() {
+        centroIn = new Scanner(System.in);
+        System.out.println("Responsabile: " + listaAree[areaCorrente].getResponsabile());
+        for (int i = 0; i < listaAree[areaCorrente].getRicercatoriLocali().size(); i++) {
+            if (listaAree[areaCorrente].getRicercatoriLocali().get(i).isSenior()) System.out.print(i + ": " + listaAree[areaCorrente].getRicercatoriLocali().get(i).toString());
+        }
+        int tempSenior;
+        do {
+            System.out.println("Inserisci l'indice del nuovo responsabile");
+            tempSenior = centroIn.nextInt();
+        } while (!listaAree[areaCorrente].getRicercatoriLocali().get(tempSenior).isSenior());
+        listaAree[areaCorrente].setResponsabile(listaAree[areaCorrente].getRicercatoriLocali().get(tempSenior));
+        System.out.println("Nuovo responsabile: " + listaAree[areaCorrente].getResponsabile());
     }
 
     public String toString() {

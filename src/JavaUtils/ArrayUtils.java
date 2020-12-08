@@ -15,7 +15,7 @@ public class ArrayUtils {
     public void print(int[] array) {
         System.out.print("[ ");
         for (int value : array) {
-            System.out.print(value + " ");
+            System.out.print(value + ", ");
         }
         System.out.println("]");
     }
@@ -23,7 +23,15 @@ public class ArrayUtils {
     public void print(char[] array) {
         System.out.print("[ ");
         for (char c : array) {
-            System.out.print(c + " ");
+            System.out.print(c + ", ");
+        }
+        System.out.println("]");
+    }
+
+    public void print(String[] array) {
+        System.out.print("[ ");
+        for (String c : array) {
+            System.out.print(c + ", ");
         }
         System.out.println("]");
     }
