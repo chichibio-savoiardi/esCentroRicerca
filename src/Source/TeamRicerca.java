@@ -4,29 +4,20 @@ import java.util.*;
 import java.lang.String;
 
 public class TeamRicerca {
-    private Ricercatore senior;
-    private Ricercatore[] juniors;
+    private Senior senior;
+    private Junior[] juniors;
     private Progetto progettoCorrente;
 
-    public TeamRicerca(Ricercatore senior, Ricercatore[] juniors) {
+    public TeamRicerca(Senior senior, Junior[] juniors) {
         this.senior = senior;
         this.juniors = juniors;
-        this.progettoCorrente = null;
-    }
-
-    public Progetto getProgettoCorrente() {
-        return progettoCorrente;
-    }
-
-    public void setProgettoCorrente(Progetto progettoCorrente) {
-        this.progettoCorrente = progettoCorrente;
     }
 
     public Ricercatore getSenior() {
         return senior;
     }
 
-    public void setSenior(Ricercatore senior) {
+    public void setSenior(Senior senior) {
         this.senior = senior;
     }
 
@@ -34,7 +25,7 @@ public class TeamRicerca {
         return juniors;
     }
 
-    public void setJuniors(Ricercatore[] juniors) {
+    public void setJuniors(Junior[] juniors) {
         this.juniors = juniors;
     }
 
@@ -42,15 +33,6 @@ public class TeamRicerca {
         return "Team Ricerca { " +
                 "\nSenior = " + senior +
                 "\nJuniors = " + Arrays.toString(juniors) +
-                "\nProgetto corrente = " + toStringAssistant() +
                 " }";
-    }
-
-    private String toStringAssistant() {
-        if (progettoCorrente == null) {
-            return "empty";
-        } else {
-            return progettoCorrente.nome;
-        }
     }
 }

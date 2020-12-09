@@ -4,14 +4,13 @@ import java.util.Arrays;
 import java.lang.String;
 
 public class Ricercatore {
-    protected String[] nomeCognome = new String[2];
-    protected boolean senior;
-    protected boolean inRicerca;
-    protected boolean inTeam;
+    private String[] nomeCognome = new String[2];
+    private boolean senior;
+    private boolean inRicerca;
+    private boolean inTeam;
 
-    public Ricercatore(String[] nomeCognome, boolean senior) {
+    public Ricercatore(String[] nomeCognome) {
         this.nomeCognome = nomeCognome;
-        this.senior = senior;
         this.inTeam = false;
     }
 
@@ -21,14 +20,6 @@ public class Ricercatore {
 
     public void setNomeCognome(String[] nomeCognome) {
         this.nomeCognome = nomeCognome;
-    }
-
-    public boolean isSenior() {
-        return senior;
-    }
-
-    public void setSenior(boolean senior) {
-        this.senior = senior;
     }
 
     public boolean isInTeam() {
