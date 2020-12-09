@@ -5,14 +5,29 @@ import java.lang.String;
 
 public class Ricercatore {
     private String[] nomeCognome = new String[2];
-    private boolean senior;
-    private boolean inRicerca;
     private boolean inTeam;
 
     public Ricercatore(String[] nomeCognome) {
         this.nomeCognome = nomeCognome;
         this.inTeam = false;
     }
+
+    public Ricercatore(Responsabile responsabile) {
+        this.nomeCognome = responsabile.getNomeCognome();
+        this.inTeam = responsabile.isInTeam();
+    }
+
+    public Ricercatore(Senior senior) {
+        this.nomeCognome = senior.getNomeCognome();
+        this.inTeam = senior.isInTeam();
+    }
+
+    public Ricercatore(Junior junior) {
+        this.nomeCognome = junior.getNomeCognome();
+        this.inTeam = junior.isInTeam();
+    }
+
+    // +++++ getter / setter +++++
 
     public String[] getNomeCognome() {
         return nomeCognome;
@@ -30,12 +45,12 @@ public class Ricercatore {
         this.inTeam = inTeam;
     }
 
+    // +++++ end getter / setter +++++
+
     public String toString() {
         return "Ricercatore { " +
-                "Nome e cognome = [" + nomeCognome[0] + ", " + nomeCognome[1] +
-                "], Senior? = " + senior +
-                ", In ricerca? = " + inRicerca +
-                ", In team? = " + inTeam +
+                "Nome e cognome = " + Arrays.toString(nomeCognome) +
+                ", In team = " + inTeam +
                 " }";
     }
 }

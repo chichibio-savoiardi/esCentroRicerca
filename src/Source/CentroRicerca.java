@@ -9,19 +9,21 @@ import java.util.Scanner;
 
 public class CentroRicerca {
     private Scanner centroIn;
-    private Area[] listaAree;
-    private int areaCorrente;
+    private List<Area> aree;
     private List<Progetto> progetti;
+    private int areaCorrente;
+    private BasicUtils basicUtils = new BasicUtils();
 
     public CentroRicerca() {
         this.centroIn = new Scanner(System.in);
-        this.listaAree = new Area[10];
-        initListaAree();
-        this.areaCorrente = 0;
+        this.aree = new ArrayList<>();
         this.progetti = new ArrayList<>();
+        this.areaCorrente = 0;
+        aree.add(new Area(new Responsabile(new String[]{"Iuri", "Antico"}), "Lobby"));
+        initListaRicercatori();
     }
 
-    private void initListaAree() {
+    private void initListaRicercatori() {
         Ricercatore[] tempArray = new Ricercatore[10];
         String[][] names = new String[10][2];
         names[0] = new String[]{"Mary", "Smith"};
@@ -35,11 +37,10 @@ public class CentroRicerca {
         names[8] = new String[]{"Anna", "Esposito"};
         names[9] = new String[]{"Giovanni", "Bianchi"};
         for (int i = 0; i < tempArray.length; i++) {
-            tempArray[i] = new Ricercatore(names[i], true);
+            if (basicUtils.randBool()) tempArray[i] = new Senior(names[i]);
+            else tempArray[i] = new Junior(names[i]);
         }
-        for (int i = 0; i < listaAree.length; i++) {
-            listaAree[i] = new Area(tempArray[i]);
-        }
+        thisArea().getListaRicercatori().addAll(Arrays.asList(tempArray));
     }
 
     // +++++ getter / setter +++++
@@ -52,52 +53,55 @@ public class CentroRicerca {
         this.areaCorrente = areaCorrente;
     }
 
-    public Area[] getListaAree() {
-        return listaAree;
+    public List<Area> getAree() {
+        return aree;
     }
 
-    public void setListaAree(Area[] listaAree) {
-        this.listaAree = listaAree;
+    public void setAree(List<Area> aree) {
+        this.aree = aree;
+    }
+
+    public List<Progetto> getProgetti() {
+        return progetti;
+    }
+
+    public void setProgetti(List<Progetto> progetti) {
+        this.progetti = progetti;
     }
 
     // ----- end getter / setter -----
 
     public void gestoreCentro() {
-        System.out.println("+++++\nArea corrente: " + areaCorrente);
-        System.out.println("Responsabile area: " + listaAree[areaCorrente].getResponsabile());
+        System.out.println("+++++\nArea corrente: " + thisArea());
         System.out.println("""
                 -----
-                Premi 1 per assegnare un progetto
-                premi 2 per finire un progetto
-                premi 3 per vedere la lista dei progetti
-                premi 4 per vedere la lista dei ricercatori e gestirli
-                premi 5 per vedere la lista dei team e gestirli
-                premi 8 per cambiare il responsabile area
-                premi 9 per cambiare area
+                Premi 1 per gestire i progetti
+                premi 2 per gestire i ricercatori
+                premi 3 per gestire i team
+                premi 4 per gestire le aree
                 Premi 0 per uscire
                 +++++""");
         int gestoreCentroSwitchVar = centroIn.nextInt();
         switch (gestoreCentroSwitchVar) {
             case 0 -> System.exit(2);
-            case 1 -> creaProgetto();
-            case 2 -> delProgetto();
-            case 3 -> System.out.println(progetti.toString());
-            case 4 -> gestoreRicercatori();
-            case 5 -> gestoreTeam();
-            case 8 -> cambiaResponsabile();
-            case 9 -> {
-                System.out.println("Inserisci il numero area da 0 a 9");
-                areaCorrente = centroIn.nextInt();
-            }
+            case 1 -> gestoreProgetti();
+            case 2 -> gestoreRicercatori();
+            case 3 -> gestoreTeam();
+            case 4 -> gestoreAree();
             default -> gestoreCentro();
         }
         gestoreCentro();
     }
 
+    public void gestoreProgetti() {
+        centroIn = new Scanner(System.in);
+        //todo
+    }
+
     public void gestoreRicercatori() {
         centroIn = new Scanner(System.in);
-        for (int i = 0; i < listaAree[areaCorrente].getRicercatoriLocali().size(); i++) {
-            System.out.println(i + ": " + listaAree[areaCorrente].getRicercatoriLocali().get(i));
+        for (int i = 0; i < thisArea().getListaRicercatori().size(); i++) {
+            System.out.println(i + ": " + thisArea().getListaRicercatori().get(i));
         }
         System.out.println("""
                 -----
@@ -108,8 +112,8 @@ public class CentroRicerca {
         int gestoreRicercatoriSwitchVar = centroIn.nextInt();
         switch (gestoreRicercatoriSwitchVar) {
             case 0 -> gestoreCentro();
-            case 1 -> listaAree[areaCorrente].creaRicercatore();
-            case 2 -> listaAree[areaCorrente].delRicercatore();
+            case 1 -> creaRicercatore();
+            case 2 -> delRicercatore();
             default -> gestoreTeam();
         }
         gestoreCentro();
@@ -117,8 +121,8 @@ public class CentroRicerca {
 
     public void gestoreTeam() {
         centroIn = new Scanner(System.in);
-        for (int i = 0; i < listaAree[areaCorrente].getTeamLocali().size(); i++) {
-            System.out.println(i + ": " + listaAree[areaCorrente].getTeamLocali().get(i));
+        for (int i = 0; i < thisArea().getListaTeam().size(); i++) {
+            System.out.println(i + ": " + thisArea().getListaTeam().get(i));
         }
         System.out.println("""
                 -----
@@ -129,78 +133,50 @@ public class CentroRicerca {
         int gestoreTeamSwitchVar = centroIn.nextInt();
         switch (gestoreTeamSwitchVar) {
             case 0 -> gestoreCentro();
-            case 1 -> listaAree[areaCorrente].creaTeam();
-            case 2 -> listaAree[areaCorrente].delTeam();
+            case 1 -> creaTeam();
+            case 2 -> delTeam();
             default -> gestoreTeam();
         }
         gestoreCentro();
     }
 
+    public void gestoreAree() {
+        centroIn = new Scanner(System.in);
+        //todo
+    }
+
     public void creaProgetto() {
-        centroIn = new Scanner(System.in);
-        if (listaAree[areaCorrente].getTeamLocali().isEmpty()) {
-            System.out.println("Non ci sono team nell'area selezionata");
-            return;
-        }
-        System.out.println("Inserisci il nome del progetto");
-        String tempNome = centroIn.nextLine();
-        for (int i = 0; i < listaAree[areaCorrente].getTeamLocali().size(); i++) {
-            System.out.println(i + ": " + listaAree[areaCorrente].getTeamLocali().get(i));
-        }
-        System.out.println("A quale team lo vuoi assegnare");
-        centroIn = new Scanner(System.in);
-        int tempTeam = centroIn.nextInt();
-        try {
-            progetti.add(new Progetto(tempNome, listaAree[areaCorrente].getTeamLocali().get(tempTeam)));
-        } catch (Exception e) {
-            System.out.println("Error\nValore invalido in creaProgetto() " + getClass());
-            return;
-        }
-        listaAree[areaCorrente].getTeamLocali().get(tempTeam).setProgettoCorrente(progetti.get(progetti.size() - 1));//assegna l'ultimo progetto creato al team scelto
-        System.out.println("Progetto creato: " + progetti.get(progetti.size() - 1));//stampa il progetto
+        //todo
     }
 
     public void delProgetto() {
-        centroIn = new Scanner(System.in);
-        if (progetti.isEmpty()) {
-            System.out.println("Non ci sono progetti in corso");
-            return;
-        }
-        for (int i = 0; i < progetti.size(); i++) {
-            System.out.println(i + ": " + progetti.get(i));
-        }
-        System.out.println("Scegli l'indice del progetto da eliminare");
-        centroIn = new Scanner(System.in);
-        int progettoDaEliminare = centroIn.nextInt();
-        try {
-            progetti.get(progettoDaEliminare).assegnatoA.setProgettoCorrente(null);
-            progetti.remove(progettoDaEliminare);
-        } catch (Exception e) {
-            System.out.println("Error\nValore invalido in delProgetto() " + getClass());
-            return;
-        }
-        System.out.println("Progetto eliminato:\n" + progetti);
+        //todo
     }
 
-    public void cambiaResponsabile() {
-        centroIn = new Scanner(System.in);
-        System.out.println("Responsabile: " + listaAree[areaCorrente].getResponsabile());
-        for (int i = 0; i < listaAree[areaCorrente].getRicercatoriLocali().size(); i++) {
-            if (listaAree[areaCorrente].getRicercatoriLocali().get(i).isSenior()) System.out.print(i + ": " + listaAree[areaCorrente].getRicercatoriLocali().get(i).toString());
-        }
-        int tempSenior;
-        do {
-            System.out.println("Inserisci l'indice del nuovo responsabile");
-            tempSenior = centroIn.nextInt();
-        } while (!listaAree[areaCorrente].getRicercatoriLocali().get(tempSenior).isSenior());
-        listaAree[areaCorrente].setResponsabile(listaAree[areaCorrente].getRicercatoriLocali().get(tempSenior));
-        System.out.println("Nuovo responsabile: " + listaAree[areaCorrente].getResponsabile());
+    public void creaTeam() {
+        //todo
+    }
+
+    public void delTeam() {
+        //todo
+    }
+
+    public void creaRicercatore() {
+        //todo
+    }
+
+    public void delRicercatore() {
+        //todo
+    }
+
+    private Area thisArea() {
+        return aree.get(areaCorrente);
     }
 
     public String toString() {
         return "Centro Ricerca { " +
                 "\nArea corrente = " + areaCorrente +
-                "\nLista aree = " + Arrays.toString(listaAree) +
+                "\nLista aree = " + aree +
                 "\nLista progetti = " + progetti +
                 "\n}\n";
     }
