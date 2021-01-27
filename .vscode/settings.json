@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "e:\\Projects\\Java\\_Jars\\lombok.jar",
+        "e:\\Projects\\Java\\_Jars\\MyUtils.jar"
+    ]
+}

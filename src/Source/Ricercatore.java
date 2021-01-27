@@ -1,9 +1,12 @@
 package Source;
 
 import java.util.Arrays;
+
+import lombok.Data;
+
 import java.lang.String;
 
-public class Ricercatore {
+public @Data class Ricercatore {
     private String[] nomeCognome = new String[2];
     private boolean inTeam;
 
@@ -25,32 +28,5 @@ public class Ricercatore {
     public Ricercatore(Junior junior) {
         this.nomeCognome = junior.getNomeCognome();
         this.inTeam = junior.isInTeam();
-    }
-
-    // +++++ getter / setter +++++
-
-    public String[] getNomeCognome() {
-        return nomeCognome;
-    }
-
-    public void setNomeCognome(String[] nomeCognome) {
-        this.nomeCognome = nomeCognome;
-    }
-
-    public boolean isInTeam() {
-        return inTeam;
-    }
-
-    public void setInTeam(boolean inTeam) {
-        this.inTeam = inTeam;
-    }
-
-    // +++++ end getter / setter +++++
-
-    public String toString() {
-        return "Ricercatore { " +
-                "Nome e cognome = " + Arrays.toString(nomeCognome) +
-                ", In team = " + inTeam +
-                " }";
     }
 }

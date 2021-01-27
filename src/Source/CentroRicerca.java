@@ -1,13 +1,14 @@
 package Source;
 
-import JavaUtils.BasicUtils;
+import MyUtils.BasicUtils;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class CentroRicerca {
+public @Data class CentroRicerca {
     private Scanner centroIn;
     private List<Area> aree;
     private List<Progetto> progetti;
@@ -37,39 +38,11 @@ public class CentroRicerca {
         names[8] = new String[]{"Anna", "Esposito"};
         names[9] = new String[]{"Giovanni", "Bianchi"};
         for (int i = 0; i < tempArray.length; i++) {
-            if (basicUtils.randBool()) tempArray[i] = new Senior(names[i]);
+            if (basicUtils.randy.bool_()) tempArray[i] = new Senior(names[i]);
             else tempArray[i] = new Junior(names[i]);
         }
         thisArea().getListaRicercatori().addAll(Arrays.asList(tempArray));
     }
-
-    // +++++ getter / setter +++++
-
-    public int getAreaCorrente() {
-        return areaCorrente;
-    }
-
-    public void setAreaCorrente(int areaCorrente) {
-        this.areaCorrente = areaCorrente;
-    }
-
-    public List<Area> getAree() {
-        return aree;
-    }
-
-    public void setAree(List<Area> aree) {
-        this.aree = aree;
-    }
-
-    public List<Progetto> getProgetti() {
-        return progetti;
-    }
-
-    public void setProgetti(List<Progetto> progetti) {
-        this.progetti = progetti;
-    }
-
-    // ----- end getter / setter -----
 
     public void gestoreCentro() {
         System.out.println("+++++\nArea corrente: " + thisArea());
@@ -171,13 +144,5 @@ public class CentroRicerca {
 
     private Area thisArea() {
         return aree.get(areaCorrente);
-    }
-
-    public String toString() {
-        return "Centro Ricerca { " +
-                "\nArea corrente = " + areaCorrente +
-                "\nLista aree = " + aree +
-                "\nLista progetti = " + progetti +
-                "\n}\n";
     }
 }

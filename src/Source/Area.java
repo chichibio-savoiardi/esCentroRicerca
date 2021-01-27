@@ -1,6 +1,6 @@
 package Source;
 
-import JavaUtils.BasicUtils;
+import MyUtils.BasicUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
